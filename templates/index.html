@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+       <title>THE MOVIE DATABASE</title>
+        <script src="https://kit.fontawesome.com/d281998b20.js" crossorigin="anonymous"></script> <!-- To use font-awesome-->
+        <link rel="stylesheet" href= "{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css') }}"> <!-- including font-awesome, i for icon-->
+    </head>
+    <body>
+        <div class='search_block' > 
+        <form name='form1' method="POST" action="{{url_for('search')}}" class="form1" >
+            <input type=text name="search" class="input"  placeholder="Search for a movie" >
+            <button type="submit"id='b1'value="searchbar"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button> <!-- fa is for font-awesome icons -->
+            </form>
+            <br><br><br>  
+            
+        <form name='form2' method="POST" action="{{url_for('rated')}}" class="form2" >
+            <button id='b2'>TOP RATED</button></form>
+
+        <form name='form3' method="POST" action="{{url_for('trend')}}" class="form3" >
+            <button id='b3'>CURRENTLY TRENDING</button></form>
+
+        </div>   
+    </body>
+</html>
