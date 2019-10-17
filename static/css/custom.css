@@ -1,13 +1,23 @@
 textarea:focus, input:focus{
     outline: none;
 }
+p {
+    margin: 0;
+}
 
-body{
-    background: url(../img/bg.jpg)
+h1{
+    margin: 0;
+}
+
+.main_body{
+    background: url(../img/bg.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:70vh;
 }
 
 .container{
-    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +46,68 @@ body{
 }
 
 .material-icons.md-36.grey {
-    font-size: 36px;
+    font-size: 30px;
     color: rgba(0,0,0, 0.7);
-    padding-right: 20px;
+    padding-right: 24px;
+}
+
+.material-icons.gold {
+    font-size: 36px;
+    color: rgb(255,163,20);
+    padding-right: 5px;
+}
+
+.movieinfo {
+    padding-top: 10vh;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.poster{
+    width: 25%;
+    height: auto;
+}
+
+.infotext {
+    padding-left: 40px;
+}
+
+.movie-title {
+    padding-bottom: 20px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.rating-no {
+    font-size: 24px;
+    font-family: "Roboto Mono";
+}
+
+.genres {
+    font-family: "Roboto Mono";
+}
+
+.runtime{
+   padding-bottom: 20px; 
+}
+
+.plot{
+    font-family: Roboto;
+    font-size: 18px;
+    padding-bottom: 20px;
+}
+
+.director{
+    font-size: 14px;
+}
+
+.writer{
+    font-size: 14px;
 }
