@@ -51,11 +51,6 @@ h1{
     padding-right: 24px;
 }
 
-.material-icons.gold {
-    font-size: 36px;
-    color: rgb(255,163,20);
-    padding-right: 5px;
-}
 
 .movieinfo {
     padding-top: 10vh;
@@ -71,11 +66,13 @@ h1{
 }
 
 .infotext {
-    padding-left: 40px;
+    padding-left: 2.6rem;
 }
 
 .movie-title {
     padding-bottom: 20px;
+    font-size: 2rem;
+    font-family: Roboto
 }
 
 .rating {
@@ -85,29 +82,48 @@ h1{
     align-items: center;
 }
 
+.material-icons.gold {
+    font-size: 2rem;
+    color: rgb(255,163,20);
+    padding-right: 5px;
+}
+
 .rating-no {
-    font-size: 24px;
+    font-size: 1.4rem;
     font-family: "Roboto Mono";
 }
+
 
 .genres {
     font-family: "Roboto Mono";
+    font-size: 1rem;
 }
 
 .runtime{
-   padding-bottom: 20px; 
+   padding: 0.2rem 0.8rem; 
+   margin: 0.4rem 0rem; 
+   max-width: 5rem;
+   font-size: 1rem;
+   font-family: Roboto;
+   border-radius: 8px;
+   display: inline-block;
+   background-color: rgba(0,0,0,0.13)
 }
 
 .plot{
+    margin-top: 1rem;
     font-family: Roboto;
-    font-size: 18px;
-    padding-bottom: 20px;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    margin-bottom: 1.2rem;
+    border-left: 0.2rem solid grey;
+    padding-left: 0.6rem;
 }
 
 .director{
-    font-size: 14px;
+    font-size: 0.85rem;
 }
 
 .writer{
-    font-size: 14px;
+    font-size: 0.85rem;
 }
