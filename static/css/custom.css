@@ -53,8 +53,12 @@ h1{
 
 
 .movieinfo {
-    padding-top: 10vh;
-    width: 80%;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 10px 20px 3px rgba(0,0,0,0.15);
+    margin-top: 10vh;
+    width: 70%;
     display: flex;
     flex-direction: row;
     align-items: left;
@@ -69,10 +73,15 @@ h1{
     padding-left: 2.6rem;
 }
 
+
 .movie-title {
     padding-bottom: 20px;
     font-size: 2rem;
     font-family: Roboto
+}
+
+@media only screen and (min-width: 1400px){
+    .movie-title {font-size: 2.5rem}
 }
 
 .rating {
@@ -88,15 +97,27 @@ h1{
     padding-right: 5px;
 }
 
+@media only screen and (min-width: 1400px){
+    .material-icons.gold {font-size: 2.5rem}
+}
+
 .rating-no {
     font-size: 1.4rem;
     font-family: "Roboto Mono";
+}
+
+@media only screen and (min-width: 1400px){
+    .rating-no {font-size: 1.75rem}
 }
 
 
 .genres {
     font-family: "Roboto Mono";
     font-size: 1rem;
+}
+
+@media only screen and (min-width: 1400px){
+    .genres {font-size: 1.25rem}
 }
 
 .runtime{
@@ -110,20 +131,47 @@ h1{
    background-color: rgba(0,0,0,0.13)
 }
 
+@media only screen and (min-width: 1400px){
+    .runtime {
+        margin: 0.6rem 0rem; 
+        padding: 0.3rem 0.9rem; 
+        font-size: 1.25rem;
+        max-width: 6rem;
+
+    }
+}
+
 .plot{
     margin-top: 1rem;
     font-family: Roboto;
     font-size: 1.2rem;
     line-height: 1.4rem;
     margin-bottom: 1.2rem;
-    border-left: 0.2rem solid grey;
+    border-left: 0.3rem solid grey;
     padding-left: 0.6rem;
+}
+
+@media only screen and (min-width: 1400px){
+    .plot{
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
 }
 
 .director{
     font-size: 0.85rem;
 }
 
+
 .writer{
     font-size: 0.85rem;
+}
+
+@media only screen and (min-width: 1400px){
+    .director{
+        font-size: 1.1rem;
+    }
+    .writer{
+        font-size: 1.1rem;
+    }
 }
