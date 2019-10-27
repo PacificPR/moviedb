@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Inception (2010)</title>
+  <title>{{ movie['long title'] }}</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -13,30 +13,26 @@
   <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/custom.css">
-
+  <link rel="stylesheet" href="{{url_for('static', filename="css/normalize.css")}}">
+  <link rel="stylesheet" href="{{url_for('static', filename="css/custom.css")}}">
 
 </head>
 <body>
 
   <div class="container">
     <div class="movieinfo">
-      <img class="poster" src="img/inception.jpg">
+      <img class="poster" src="{{ movie['cover'] }}">
       <div class="infotext">
-        <h1 class="movie-title">Inception (2010)</h1>
+        <h1 class="movie-title">{{ movie['long title']}}</h1>
         <div class="rating">
           <i class="material-icons gold"> star </i>
-          <p class="rating-no">8.8</p>
+          <p class="rating-no">{{ movie['rating'] }}</p>
         </div>
-        <p class="genres">Action, Adventure, Sci-Fi</p>
-        <p class="runtime">2h 28min</p>
-        <p class="plot">A thief steals corporate secretes through the use of
-        dream-sharing technology is given the inverse task of planting an
-        idea into the mind of a C.E.O.
-        </p>
-        <p class="director">Director: Christopher Nolan</p>
-        <p class="writer">Writer: Christopher Nolan</p>
+        <p class="genres">{{ movie['genres'] }} </p>
+        <p class="runtime">{{ movie['runtime'] }}</p>
+        <p class="plot"> {{ movie['plot'] }} </p>
+        <p class="director">Director: {{ movie['director'] }}</p>
+        <p class="writer">Writer: {{ movie['writer'] }}</p>
       </div>
     </div>
   </div>
