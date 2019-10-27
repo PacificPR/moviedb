@@ -21,13 +21,17 @@
 
   <div class="container">
     <div class="movieinfo">
+      {% if movie['cover'] %}
       <img class="poster" src="{{ movie['cover'] }}">
+      {% endif %}
       <div class="infotext">
         <h1 class="movie-title">{{ movie['long title']}}</h1>
+        {% if movie['rating'] %}
         <div class="rating">
           <i class="material-icons gold"> star </i>
           <p class="rating-no">{{ movie['rating'] }}</p>
         </div>
+        {% endif %}
         <p class="genres">{{ movie['genres'] }} </p>
         <p class="runtime">{{ movie['runtime'] }}</p>
         <p class="plot"> {{ movie['plot'] }} </p>
