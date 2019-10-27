@@ -18,5 +18,9 @@ def search():
     else:
         movies = ia.search_movie(query)
         mov = [dict(m) for m in movies]
-        results = {'results': mov}
-        return results;
+        # results = {'results': mov}
+        print(mov[0]['cover url'])
+
+    return render_template("search.html", results=mov)
+
+

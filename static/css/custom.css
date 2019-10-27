@@ -5,7 +5,7 @@ p {
     margin: 0;
 }
 
-h1{
+h1,h2,h3 {
     margin: 0;
 }
 
@@ -174,4 +174,37 @@ h1{
     .writer{
         font-size: 1.1rem;
     }
+}
+
+.results{
+    margin-top: 10vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-box{
+    background-color: white;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.8rem;
+    border-radius: 1rem;
+    box-shadow: 0 7px 10px 3px rgba(0,0,0,0.1);
+    display: flex;
+}
+
+.kind {
+    font-family: "Roboto Mono", mono;
+    font-size: 0.8rem;
+
+}
+
+.res-text{
+    margin-left: 1rem;
+}
+
+.res-poster{
+    display: inline-block;
+    min-width: 60px;
+    width: 5%;
+
 }
