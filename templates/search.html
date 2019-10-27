@@ -21,13 +21,15 @@
   <div class="container">
     <div class=results>
       {% for res in results %}
-      <div class=result-box>
-        <img src="{{ res['cover url'] }}" class=res-poster>
+      <a class=result-box href="{{ url_for('info', id=res['id']) }}">
+        {%if res['cover'] %}
+        <img src="{{ res['cover'] }}" class=res-poster>
+        {% endif %}
         <div class="res-text">
           <h3 class=res-title>{{res['title']}} ({{res['year']}})</h3>
           <p class="kind">type: {{res['kind']}}</p>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
   </div>

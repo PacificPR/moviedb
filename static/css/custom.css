@@ -1,8 +1,14 @@
 textarea:focus, input:focus{
     outline: none;
 }
+
 p {
     margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
 h1,h2,h3 {
@@ -194,8 +200,7 @@ h1,h2,h3 {
 
 .kind {
     font-family: "Roboto Mono", mono;
-    font-size: 0.8rem;
-
+    font-size: 0.9rem;
 }
 
 .res-text{
