@@ -6,7 +6,11 @@ import tmdbsimple as tmdb
 tmdb.API_KEY = 'b888b64c9155c26ade5659ea4dd60e64'
 app = Flask(__name__)
 
-local=True
+
+# local - use local mysql db
+local=False
+
+# enable_extra - loads poster and plot overview from tmdb for movie info
 enable_extra=True
 tmdb_img_url = r'https://image.tmdb.org/t/p/w342'
 
@@ -43,8 +47,8 @@ def search():
                 'id': m.getID(),
                 'cover': m['cover url'],
                 'title': m['title'],
-                'year': m['year'],
-                'kind': m['kind']
+                'year':  m.get('year', ''),
+                'kind':  m['kind']
                 } for m in q_res]
 
         return render_template("search.html", results=results, local=local)
@@ -61,7 +65,7 @@ def info():
         mov = ia.get_movie(movid)
         movie={}
 
-        #collect all the relevent info in a dict
+        #collect all the relevent info in a dict 'movie'
         long_title = mov.get('long imdb title')
         title = mov.get('title')
         rating = mov.get('rating', None)
@@ -93,9 +97,6 @@ def info():
             and find.tv_results[0]['overview']):
                 cover = tmdb_img_url + find.tv_results[0]['poster_path']
                 plot = find.tv_results[0]['overview']
-
-
-
 
         movie = {
                 'long title': long_title,
