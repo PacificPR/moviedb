@@ -41,5 +41,13 @@
     </div>
   </div>
 
+  
+  <div class="favbutton">
+      <form class="fav" action="{{ url_for('favourite', id=res['id'])  }}" method="POST">
+          <button name="fav_button" type="submit">ADD TO FAV</button>
+      </form>
+
+  </div>
+
 </body>
 </html>

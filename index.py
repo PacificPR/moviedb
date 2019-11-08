@@ -6,6 +6,10 @@ import tmdbsimple as tmdb
 tmdb.API_KEY = 'b888b64c9155c26ade5659ea4dd60e64'
 app = Flask(__name__)
 
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'may'
+app.config['MYSQL_PASSWORD'] = 'venom123'
+app.config['MYSQL_DB'] = 'imdb'
 
 # local - use local mysql db
 local=False
@@ -22,7 +26,7 @@ else:
 
 @app.route('/')
 def index():
-    print(url_for('search'))
+    #print(url_for('search'))
     return render_template("index.html");
 
 @app.route('/search')
@@ -110,3 +114,19 @@ def info():
                 'cover': cover if cover else ''
         }
         return render_template("info.html", movie=movie)
+
+@app.route('/fav')
+def favourite():
+    movid = request.args.get('id',None)
+    if not movid:
+        return (' ')
+    else:
+        mov_id = ia.get_movie(movid)
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO fav(mov_id) VALUES (%d)", (mov_id))
+        mysql.connection.commit()
+        cur.close()
+
+
+#if __name__ == '__main__':     
+    #app.run(host='0.0.0.0', port=5000, debug=True)
