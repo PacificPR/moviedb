@@ -1,6 +1,7 @@
 textarea:focus, input:focus{
     outline: none;
 }
+html { height: 100% }
 
 p {
     margin: 0;
@@ -15,12 +16,52 @@ h1,h2,h3 {
     margin: 0;
 }
 
-.main_body{
+nav {
+    background-color: rgba(0, 0, 0,0.9);
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+nav ul{
+    list-style: none;
+    padding-left: 30px;
+}
+
+nav li{
+    display: inline;
+}
+
+nav li:not(:last-child){
+    padding-right: 40px;
+}
+
+nav a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+}
+
+nav a:hover{
+    color: yellow;
+}
+
+.landing{
     background: url(../img/bg.jpg);
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+}
+
+.main_body{
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height:70vh;
 }
 
 .container{
@@ -39,7 +80,7 @@ h1,h2,h3 {
     align-items: center;
 }
 
-.input{
+.srch-input{
     height: 50px;
     border-radius: 2.8rem; 
     width: 600px;
@@ -182,7 +223,7 @@ h1,h2,h3 {
 }
 
 .results{
-    margin-top: 10vh;
+    margin-top: 2rem;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -211,4 +252,16 @@ h1,h2,h3 {
     min-width: 60px;
     width: 5%;
 
+}
+
+.signup{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    background: pink;
+    width: 40%;
+}
+
+.singup form input{
+    display: block;
 }

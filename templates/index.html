@@ -18,20 +18,24 @@
 
 
 </head>
-<body class="main_body">
+<body class="landing">
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('main.index') }}">Home</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+      <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
+      <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+    </ul>
+  </nav>
 
-  <div class="container">
-    <form class="search" action="{{ url_for('main.search') }}" method="get">
-      <!-- <div class="search"> -->
-          <input name="q" type=text class="input" placeholder="Search for Movies/TV Shows">
-          <i class="material-icons md-36 grey" > search </i>
-          </input>
-      <!-- </div> -->
-    </form>
-    <form>
-      <!-- implement in the end -->
-      <!-- <button>Top 250 Movies</button> -->
-    </form>
+  <div class="main_body">
+    <div class="container">
+      <form class="search" action="{{ url_for('main.search') }}" method="get">
+        <input name="q" type=text class="srch-input" placeholder="Search for Movies/TV Shows">
+        <i class="material-icons md-36 grey" > search </i>
+        </input>
+      </form>
+    </div>
   </div>
 
 </body>
