@@ -7,6 +7,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://may:venom123@localhost/imdb'
+    app.config['SECRET_KEY'] = 'thisisasecret'
 
     db.init_app(app)
 
