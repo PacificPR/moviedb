@@ -58,6 +58,9 @@ def search():
     else: #not query
         return ('')
 
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @main.route('/info')
 def info():
