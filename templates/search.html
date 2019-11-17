@@ -21,7 +21,7 @@
   <div class="container">
     <div class=results>
       {% for res in results %}
-      <a class=result-box href="{{ url_for('info', id=res['id']) }}">
+      <a class=result-box href="{{ url_for('main.info', id=res['id']) }}">
         {%if res['cover'] %}
         <img src="{{ res['cover'] }}" class=res-poster>
         {% endif %}

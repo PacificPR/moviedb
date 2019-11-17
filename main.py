@@ -1,10 +1,14 @@
-from flask import Flask,render_template,request, url_for
+from flask import Flask, render_template, request, url_for, Blueprint
+from . import db
 from imdb import IMDb
 from pprint import pprint as pp
 import tmdbsimple as tmdb
 
+
+
 tmdb.API_KEY = 'b888b64c9155c26ade5659ea4dd60e64'
-app = Flask(__name__)
+
+main = Blueprint('main', __name__)
 
 
 # local - use local mysql db
@@ -20,12 +24,11 @@ if local:
 else:
     ia = IMDb()
 
-@app.route('/')
+@main.route('/')
 def index():
-    print(url_for('search'))
     return render_template("index.html");
 
-@app.route('/search')
+@main.route('/search')
 def search():
     query = request.args.get('q', None)
     if query:
@@ -56,7 +59,7 @@ def search():
         return ('')
 
 
-@app.route('/info')
+@main.route('/info')
 def info():
     movid = request.args.get('id', None)
     if not movid:
