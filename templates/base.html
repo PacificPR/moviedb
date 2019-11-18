@@ -21,16 +21,20 @@
 </head>
 <body>
   <nav>
-    <ul>
-      <li><a href="{{ url_for('main.index') }}">Home</a></li>
+    <div class="nav-left">
+      <p class="nav-item"><a href="{{ url_for('main.index') }}">Home</a></li></p>
+    </div>
+    <div class="nav-right">
       {% if not session['user'] %}
-      <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-      <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
+      <p class="nav-item"><a href="{{ url_for('auth.login') }}">Login</a></p>
+      <p class="nav-item"><a href="{{ url_for('auth.signup') }}">Sign up</a></p>
       {% else %}
-      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      <p class="nav-username nav-item">
+      Logged in as <span style="color:white;font-weight:700">{{ session['user'] }}</span></p>
+      <p class="nav-item"><a href="{{ url_for('auth.logout') }}">Logout</a></p>
+      <p class="nav-item"><a href="{{ url_for('main.profile') }}">Profile</a></p>
       {% endif %}
-      <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
-    </ul>
+    </div>
   </nav>
 {% block content %}
 {% endblock %}

@@ -2,7 +2,10 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-html { height: 100% }
+html {
+    height: 100%;
+    overflow: auto;
+}
 
 p {
     margin: 0;
@@ -18,7 +21,7 @@ h1,h2,h3 {
 }
 
 nav {
-    background-color: rgba(0, 0, 0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     height: 64px;
     display: flex;
     flex-direction: row;
@@ -27,28 +30,53 @@ nav {
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-nav ul{
-    list-style: none;
-    padding-left: 30px;
-}
-
-nav li{
-    display: inline;
-}
-
-nav li:not(:last-child){
-    padding-right: 40px;
-}
-
 nav a{
+    font-family: "Roboto";
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 700;
     color: white;
 }
 
+.nav-left {
+    margin-left: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-right {
+    margin-right: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-left .nav-item:not(:first-child) {
+    margin-left: 2rem;
+}
+
+.nav-right .nav-item:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.nav-left .nav-item {
+    margin: 0;
+}
+
 nav a:hover{
     color: yellow;
+}
+
+.nav-username {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 90%;
+    font-family: "Roboto Mono";
+    text-transform: none;
 }
 
 .landing{
@@ -58,15 +86,12 @@ nav a:hover{
     height: 70%;
 }
 
-.main_body{
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.search_body{
+    margin-top: 20vh;
+    height: 100%;
 }
 
-.container{
-    min-height: calc(100vh - 64px);
+.mycontainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,24 +105,25 @@ nav a:hover{
     height: 50px;
     border-radius: 2.8rem; 
     align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 20px 3px rgba(0,0,0,0.15);
 }
 
 .srch-input{
     height: 50px;
     border-radius: 2.8rem; 
-    width: 600px;
     border: none;
-    padding-left: 30px;
     box-sizing: border-box;
     font-family: Roboto;
     font-style: style;
     font-size: 20px;
+    padding-left: 2rem;
 }
 
 .material-icons.md-36.grey {
+    padding-right: 1.5rem;
     font-size: 30px;
     color: rgba(0,0,0, 0.7);
-    padding-right: 24px;
 }
 
 
@@ -106,7 +132,8 @@ nav a:hover{
     padding: 2.5rem;
     border-radius: 1.6rem;
     box-shadow: 0 10px 20px 3px rgba(0,0,0,0.15);
-    width: 90%;
+    margin-top: 2.5rem;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -207,20 +234,22 @@ nav a:hover{
 }
 
 .director{
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-family: Roboto;
 }
 
 
 .writer{
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-family: Roboto;
 }
 
 @media only screen and (min-width: 1400px){
     .director{
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     .writer{
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
