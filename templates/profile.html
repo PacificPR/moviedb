@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1 class="title">
-  Welcome, Anthony!
+{% if session['user'] %}
+    Welcome, {{ session['user'] }}
+{% else %}
+    You need to <a class="has-text-primary" href="{{ url_for('auth.login') }}">Login</a> in order to view your profile
+{% endif %}
 </h1>
 {% endblock %}

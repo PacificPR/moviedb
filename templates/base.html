@@ -23,8 +23,12 @@
   <nav>
     <ul>
       <li><a href="{{ url_for('main.index') }}">Home</a></li>
+      {% if not session['user'] %}
       <li><a href="{{ url_for('auth.login') }}">Login</a></li>
       <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
+      {% else %}
+      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      {% endif %}
       <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
     </ul>
   </nav>
