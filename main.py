@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, url_for, Blueprint
-from . import db
+from flask import Flask, render_template, request, url_for, Blueprint, g
+from . import db, session, g
 from imdb import IMDb
 from pprint import pprint as pp
 import tmdbsimple as tmdb
@@ -54,7 +54,10 @@ def search():
                 'kind':  m['kind']
                 } for m in q_res]
 
-        return render_template("search.html", results=results, local=local)
+        return render_template("search.html", results=results,
+                local=local).replace('<html lang="en"',
+                    '<html lang="en" style="background-color:#efefef"',
+                    1)
     else: #not query
         return ('')
 
@@ -115,4 +118,7 @@ def info():
                 'plot': plot if plot else '',
                 'cover': cover if cover else ''
         }
-        return render_template("info.html", movie=movie)
+        return render_template("info.html", movie=movie).replace(
+                '<html lang="en"',
+                '<html lang="en" style="background-color:#efefef"',
+                1)

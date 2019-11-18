@@ -2,7 +2,7 @@ from flask import (Blueprint, render_template, redirect,
         url_for, request, flash)
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import user_info
-from . import db
+from . import db, session, g
 
 auth = Blueprint('auth', __name__)
 
@@ -21,8 +21,10 @@ def login_post():
     if not user or not check_password_hash(user.password, password): 
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
-
-    return redirect(url_for('main.profile'))
+    else:
+        session['user'] = username
+        g.user = session['user']
+        return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
 def signup():
@@ -33,9 +35,14 @@ def signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
 
+    if not username or not password:
+        flash("Username or Password cannot be emtpy")
+        return redirect(url_for('auth.signup'))
+
     user = user_info.query.filter_by(username=username).first()
 
     if user:
+        flash('Username already exists')
         return redirect(url_for('auth.signup'))
 
     new_user = user_info(username=username, password=generate_password_hash(
@@ -48,4 +55,5 @@ def signup_post():
 
 @auth.route('/logout')
 def logout():
-    return 'Logout'
+    session['user'] = None
+    return redirect(url_for('auth.login'))
