@@ -26,7 +26,10 @@ else:
 
 @main.route('/')
 def index():
-    return render_template("index.html");
+    # I know this is a very hacky way of doing this; I am already cringing
+    return render_template("index.html").replace('<html lang="en"',
+            '<html lang="en" style="background-image:url(../static/img/bg.jpg)"'
+            ,1)
 
 @main.route('/search')
 def search():

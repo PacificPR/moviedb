@@ -1,46 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html' %}
 
-  <meta charset="utf-8">
-  <title>Movie and TV Shows</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="//fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet" type="text/css">
-  <link href="//fonts.googleapis.com/css?family=Roboto+Mono:500" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link rel="stylesheet" href="{{ url_for('static', filename="css/normalize.css")}}">
-  <link rel="stylesheet" href="{{ url_for('static', filename="css/custom.css")}}">
-
-
-</head>
-<body class="landing">
-  <nav>
-    <ul>
-      <li><a href="{{ url_for('main.index') }}">Home</a></li>
-      {% if not session['user'] %}
-      <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-      <li><a href="{{ url_for('auth.signup') }}">Sign up</a></li>
-      {% else %}
-      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-      {% endif %}
-      <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
-    </ul>
-  </nav>
-
-  <div class="main_body">
-    <div class="container">
-      <form class="search" action="{{ url_for('main.search') }}" method="get">
-        <input name="q" type=text class="srch-input" placeholder="Search for Movies/TV Shows">
-        <i class="material-icons md-36 grey" > search </i>
-        </input>
-      </form>
-    </div>
+{% block content %}
+<div class="search_body">
+  <div class="mycontainer">
+    <form class="search" action="{{ url_for('main.search') }}" method="get">
+      <input name="q" type=text class="srch-input" placeholder="Search for Movies/TV Shows">
+      <i class="material-icons md-36 grey" > search </i>
+      </input>
+    </form>
   </div>
-
-</body>
-</html>
+</div>
+{% endblock %}
