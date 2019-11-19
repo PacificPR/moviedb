@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, url_for, Blueprint, g
+from flask import (Flask, render_template, request, url_for, Blueprint, g,
+        Response)
 from . import db, session, g
+from .models import user_info, fav
 from imdb import IMDb
 from pprint import pprint as pp
 import tmdbsimple as tmdb
@@ -111,6 +113,7 @@ def info():
                 plot = find.tv_results[0]['overview']
 
         movie = {
+                'id': mov.getID(),
                 'long title': long_title,
                 'title': title,
                 'rating': rating if rating else '',
@@ -125,3 +128,23 @@ def info():
                 '<html lang="en"',
                 '<html lang="en" style="background-color:#efefef"',
                 1)
+
+@main.route('/fav', methods=['POST'])
+def favorite():
+    if not session.get('user', None):
+        return Response("{'status':'error',\n"
+                "'message': 'not logged in'}",
+                status=401,
+                mimetype='application/json')
+
+    tconst = request.form.get('tconst', None)
+    user = user_info.query.filter_by(username=session['user']).first()
+
+    user_id = user.user_id
+
+    db.session.add(fav(tconst=tconst, user_id=user_id))
+    db.session.commit()
+    return Response("{'status': 'success',\n"
+                      "'message': added to fav}",
+            status=200,
+            mimetype='application/json')
