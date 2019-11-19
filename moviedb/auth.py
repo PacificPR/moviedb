@@ -1,14 +1,16 @@
 from flask import (Blueprint, render_template, redirect,
         url_for, request, flash)
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import user_info
+from .models import user_info, fav
 from . import db, session, g
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template("login.html").replace('<html lang="en"',
+            '<html lang="en" style="background-image:url(../static/img/bg.jpg)"'
+            ,1)
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -28,7 +30,9 @@ def login_post():
 
 @auth.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template("signup.html").replace('<html lang="en"',
+            '<html lang="en" style="background-image:url(../static/img/bg.jpg)"'
+            ,1)
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():

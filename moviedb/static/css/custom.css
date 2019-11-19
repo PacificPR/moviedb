@@ -172,6 +172,10 @@ nav a:hover{
     padding-right: 5px;
 }
 
+.material-icons.md-fav {
+    color: white;
+}
+
 @media only screen and (min-width: 1400px){
     .material-icons.gold {font-size: 2.5rem}
 }
@@ -185,6 +189,39 @@ nav a:hover{
     .rating-no {font-size: 1.75rem}
 }
 
+.fav-text {
+    color: white;
+    margin-left: 0.3rem;
+    margin-bottom: 0.1rem;
+}
+
+.fav{
+    margin-top: 1rem;
+    background-color: rgba(247, 101, 106, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 2.6rem;
+    border-radius: 0.4rem;
+    padding: 0px;
+    border: 0 none;
+}
+
+.fav:hover .fav-text {
+    color: rgb(247, 101, 106);
+}
+
+.fav:hover .material-icons.md-fav {
+    color: rgb(247, 101, 106);
+}
+
+.fav:hover {
+    background-color: white;
+    border: 2px solid rgba(247, 101, 106, 1);
+}
+
 
 .genres {
     font-family: "Roboto Mono";
@@ -196,14 +233,14 @@ nav a:hover{
 }
 
 .runtime{
-   padding: 0.2rem 0.8rem; 
-   margin: 0.4rem 0rem; 
-   max-width: 5rem;
-   font-size: 1rem;
-   font-family: Roboto;
-   border-radius: 8px;
-   display: inline-block;
-   background-color: rgba(0,0,0,0.13)
+    padding: 0.2rem 0.8rem; 
+    margin: 0.4rem 0rem; 
+    max-width: 5rem;
+    font-size: 1rem;
+    font-family: Roboto;
+    border-radius: 8px;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.13)
 }
 
 @media only screen and (min-width: 1400px){

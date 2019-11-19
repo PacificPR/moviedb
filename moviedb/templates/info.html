@@ -20,6 +20,10 @@
       <p class="plot"> {{ movie['plot'] }} </p>
       <p class="director">Director: {{ movie['director'] }}</p>
       <p class="writer">Writer: {{ movie['writer'] }}</p>
+      <button id="addtofav" type=submit class="fav" name="tconst" value="{{ movie['id'] }}">
+        <i class="material-icons md-fav">favorite</i>
+        <p class="fav-text">add to favorite</p>
+      </button>
     </div>
   </div>
 </div>
