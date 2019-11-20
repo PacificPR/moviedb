@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}{{ movie['long title'] }}{% endblock %}
 
+{% block content %}
 <div class="mycontainer">
   <div class="movieinfo">
     {% if movie['cover'] %}
@@ -20,12 +21,63 @@
       <p class="plot"> {{ movie['plot'] }} </p>
       <p class="director">Director: {{ movie['director'] }}</p>
       <p class="writer">Writer: {{ movie['writer'] }}</p>
-      <button id="addtofav" type=submit class="fav" name="tconst" value="{{ movie['id'] }}">
-        <i class="material-icons md-fav">favorite</i>
-        <p class="fav-text">add to favorite</p>
+      {% if isfavorite %}
+      <button id="favButton" type=submit class="fav" name="remove" value="{{ movie['id'] }}">
+        <i class="material-icons md-fav">cancel</i>
+        <p class="fav-text">remove from favorites</p>
       </button>
+      {% else %}
+      <button id="favButton" type=submit class="fav" name="add" value="{{ movie['id'] }}">
+        <i class="material-icons md-fav">favorite</i>
+        <p class="fav-text">add to favorites</p>
+      </button>
+      {% endif %}
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+(function() {
+    var httpReq = new XMLHttpRequest();
+    var formdata = new FormData();
+
+    var favButton = document.getElementById("favButton");
+    var tconst = favButton.getAttribute("value");
+
+    favButton.addEventListener('click', handleReq);
+
+    function handleReq() {
+        var action = favButton.getAttribute("name");
+        httpReq.onreadystatechange = notify;
+        httpReq.open('POST', 'http://localhost:5000/fav');
+        formdata.append('tconst', tconst);
+        if (action == "remove"){
+            formdata.append('remove', 1);
+        }
+        httpReq.send(formdata);
+    }
+
+    function notify() {
+        if (httpReq.readyState === XMLHttpRequest.DONE) {
+            var response = JSON.parse(httpReq.responseText);
+            if (response.status == "success"){
+                if (response.actiontype == "add"){
+                    favButton.firstElementChild.innerHTML = "cancel"
+                    favButton.lastElementChild.innerHTML = "remove from favorites"
+                    favButton.setAttribute("name", "remove")
+                }
+                else if (response.actiontype == "remove"){
+                    favButton.firstElementChild.innerHTML = "favorite"
+                    favButton.lastElementChild.innerHTML = "add to favorites"
+                    favButton.setAttribute("name", "add")
+                }
+            }
+        }
+    }
+})();
+</script>
 
 {% endblock %}
