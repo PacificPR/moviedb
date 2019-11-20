@@ -1,4 +1,5 @@
 from flask import Flask, session, g
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -10,6 +11,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'thisisasecret'
 
     db.init_app(app)
+    CORS(app)
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
