@@ -15,10 +15,14 @@ main = Blueprint('main', __name__)
 
 
 # local - use local mysql db
-local=False
+local=True
 
 # enable_extra - loads poster and plot overview from tmdb for movie info
 enable_extra=True
+
+# to laod posters on profile page
+posters_on_profile_page=False
+
 tmdb_img_url = r'https://image.tmdb.org/t/p/w342'
 
 
@@ -92,7 +96,52 @@ def search():
 
 @main.route('/profile')
 def profile():
-    return render_template('profile.html')
+    if not session.get('user', None):
+        return render_template('profile.html')
+
+    user_id = db_get_userid(session['user'])
+    fav_query = fav.query.filter_by(user_id=user_id).all()
+    fav_tconsts = [a.tconst for a in fav_query]
+
+    user_data = {}
+    user_data['movies'] = []
+    user_data['favorite_count'] = len(fav_tconsts)
+    user_data['favorite_genre'] = 'TBD'
+    for a in fav_tconsts:
+        movie = {}
+        mov = ia.get_movie(a)
+
+        long_title = mov.get('long imdb title')
+        genres = (", ".join(mov.get('genres', []))).title()
+        rating = mov.get('rating', None)
+        cover =  None
+
+        if posters_on_profile_page:
+            find = tmdb.Find('tt{:07}'.format(int(a)))
+            find.info(external_source='imdb_id')
+            cover_path =  None
+
+            if find.movie_results:
+                cover_path = find.movie_results[0].get('poster_path', None)
+            elif find.tv_results:
+                cover_path = find.tv_results[0].get('poster_path', None)
+
+            if cover_path:
+                cover = tmdb_img_url + cover_path
+
+        movie = {
+                'id': a,
+                'long title': long_title,
+                'rating': rating if rating else '',
+                'genres': genres,
+                'cover': cover if cover else ''
+        }
+
+        user_data['movies'].append(movie)
+
+    return render_template('profile.html',
+            user_data=user_data,
+            posters_on_profile_page=posters_on_profile_page)
 
 @main.route('/info')
 def info():
@@ -123,10 +172,9 @@ def info():
         cover = mov.get('full-size cover url', None)
         plot = mov.get('plot', [''])[0].split('::')[0]
 
-        find = tmdb.Find('tt{:07}'.format(int(movid)))
-        find.info(external_source='imdb_id')
-
-        if (find.movie_results or find.tv_results) and enable_extra:
+        if enable_extra:
+            find = tmdb.Find('tt{:07}'.format(int(movid)))
+            find.info(external_source='imdb_id')
             if (find.movie_results and find.movie_results[0]['poster_path']
             and find.movie_results[0]['overview']):
                 cover = tmdb_img_url + find.movie_results[0]['poster_path']
