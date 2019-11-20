@@ -126,6 +126,14 @@ nav a:hover{
     color: rgba(0,0,0, 0.7);
 }
 
+.disapear {
+    display: none;
+}
+
+.fav-bg {
+    background: rgb(255,195,195);
+    background: linear-gradient(215deg, rgba(255,195,195,1) 0%, rgba(255,237,237,1) 20%, rgba(255,250,250,1) 100%); 
+}
 
 .movieinfo {
     background-color: white;
@@ -148,11 +156,22 @@ nav a:hover{
     padding-left: 2.6rem;
 }
 
+.infotext-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.infotext-head .material-icons.md-fav {
+    font-size: 2rem;
+}
 
 .movie-title {
-    padding-bottom: 20px;
     font-size: 2rem;
-    font-family: Roboto
+    font-family: Roboto;
+    line-height: 100%;
+    padding-right: 2rem;
 }
 
 @media only screen and (min-width: 1400px){
@@ -173,10 +192,13 @@ nav a:hover{
 }
 
 .material-icons.md-fav {
-    margin-left: 0.7rem;
     font-size: 1.2rem;
     color: rgb(247, 101, 106);
 }
+.fav .material-icons.md-fav {
+    margin-left: 0.7rem;
+}
+
 
 @media only screen and (min-width: 1400px){
     .material-icons.gold {font-size: 2.5rem}
@@ -201,7 +223,7 @@ nav a:hover{
 
 .fav{
     margin-top: 1rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -348,4 +370,125 @@ nav a:hover{
 
 .singup form input{
     display: block;
+}
+
+
+.profile {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 10px 20px 3px rgba(0,0,0,0.15);
+    margin-top: 2.5rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+.profile-head h1{
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.profile-username {
+    font-family: "Roboto Mono";
+    font-size: 1.2rem;
+}
+
+.divider {
+    padding-top: 2rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.profile-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-head-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-head-right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.profile-fav-count{
+    display: flex;
+    align-items: center;
+}
+
+.profile-fav-count i{
+    padding-right: 0.4rem;
+}
+
+.profile-fav-genre {
+    font-weight: 500;
+}
+
+.profile h2 {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.profile-list-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile-list-item {
+    padding: 0.8rem 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 0.8rem;
+}
+
+.profile-list-item:hover {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    background-color: #f4f4f4;
+}
+
+.profile-list-item:focus {
+    outline: none;
+}
+
+.profile-list-item:active {
+    box-shadow: 0 5px 10px rgba(0,0,0,0);
+    outline: none;
+}
+
+.profile-list-item-text {
+    padding-left: 1rem;
+}
+.profile-list-title {
+    font-size: 1.4rem;
+}
+
+.profile-list-rating {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.profile-list-rating .material-icons.gold {
+    font-size: 1.4rem;
+}
+
+.profile-list-rating .rating-no {
+    font-size: 0.9rem;
+    font-family: "Roboto Mono";
+}
+
+.profile-list-poster{
+    display: inline-block;
+    min-width: 60px;
+    width: 10%;
 }

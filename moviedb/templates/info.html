@@ -4,12 +4,16 @@
 
 {% block content %}
 <div class="mycontainer">
-  <div class="movieinfo">
+    <div id="movieinfo" class="movieinfo {% if isfavorite %}fav-bg{% endif %}">
     {% if movie['cover'] %}
     <img class="poster" src="{{ movie['cover'] }}">
     {% endif %}
     <div class="infotext">
-      <h1 class="movie-title">{{ movie['long title']}}</h1>
+      <div class="infotext-head">
+        <h1 class="movie-title">{{ movie['long title']}}</h1>
+        <i id="heart" class="{% if isfavorite %}material-icons md-fav
+               {% else %}disapear{% endif %}">favorite</i>
+      </div>
       {% if movie['rating'] %}
       <div class="rating">
         <i class="material-icons gold"> star </i>
@@ -46,6 +50,9 @@
 
     var favButton = document.getElementById("favButton");
     var tconst = favButton.getAttribute("value");
+    var bg = document.getElementById("movieinfo");
+    var heart = document.getElementById("heart");
+
 
     favButton.addEventListener('click', handleReq);
 
@@ -65,14 +72,18 @@
             var response = JSON.parse(httpReq.responseText);
             if (response.status == "success"){
                 if (response.actiontype == "add"){
-                    favButton.firstElementChild.innerHTML = "cancel"
-                    favButton.lastElementChild.innerHTML = "remove from favorites"
-                    favButton.setAttribute("name", "remove")
+                    favButton.firstElementChild.innerHTML = "cancel";
+                    favButton.lastElementChild.innerHTML = "remove from favorites";
+                    favButton.setAttribute("name", "remove");
+                    bg.className="movieinfo fav-bg";
+                    heart.className="material-icons md-fav"
                 }
                 else if (response.actiontype == "remove"){
-                    favButton.firstElementChild.innerHTML = "favorite"
-                    favButton.lastElementChild.innerHTML = "add to favorites"
-                    favButton.setAttribute("name", "add")
+                    favButton.firstElementChild.innerHTML = "favorite";
+                    favButton.lastElementChild.innerHTML = "add to favorites";
+                    favButton.setAttribute("name", "add");
+                    bg.className="movieinfo";
+                    heart.className="disapear "
                 }
             }
         }
