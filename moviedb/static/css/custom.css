@@ -173,7 +173,9 @@ nav a:hover{
 }
 
 .material-icons.md-fav {
-    color: white;
+    margin-left: 0.7rem;
+    font-size: 1.2rem;
+    color: rgb(247, 101, 106);
 }
 
 @media only screen and (min-width: 1400px){
@@ -190,36 +192,46 @@ nav a:hover{
 }
 
 .fav-text {
-    color: white;
+    font-family: Roboto;
+    color: rgb(247, 101, 106);
     margin-left: 0.3rem;
+    margin-right: 0.7rem;
     margin-bottom: 0.1rem;
 }
 
 .fav{
     margin-top: 1rem;
-    background-color: rgba(247, 101, 106, 1);
+    background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 10rem;
+    min-width: 8rem;
     height: 2.6rem;
     border-radius: 0.4rem;
     padding: 0px;
-    border: 0 none;
+    border: 2px solid rgba(247, 101, 106, 1);
+}
+
+.fav:focus {
+    outline: none;
+}
+
+.fav:active {
+    box-shadow: 0px 5px 7px rgba(0,0,0,0.1);
 }
 
 .fav:hover .fav-text {
-    color: rgb(247, 101, 106);
+    color: white;
 }
 
 .fav:hover .material-icons.md-fav {
-    color: rgb(247, 101, 106);
+    color: white;
 }
 
 .fav:hover {
-    background-color: white;
-    border: 2px solid rgba(247, 101, 106, 1);
+    background-color: rgba(247, 101, 106, 1);
+    border: 2px solid rgba(247, 101, 106, 0);
 }
 
 
