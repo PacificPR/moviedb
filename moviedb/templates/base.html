@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Movie and TV Shows</title>
+  <title>{% block title %}{% endblock %} - moviedb</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -38,5 +38,8 @@
   </nav>
 {% block content %}
 {% endblock %}
+
+{% block script %}
+{% endblock script %}
 </body>
 </html>
