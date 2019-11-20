@@ -5,6 +5,7 @@ from .models import user_info, fav
 from imdb import IMDb
 from pprint import pprint as pp
 import tmdbsimple as tmdb
+import json
 
 
 
@@ -25,6 +26,29 @@ if local:
     ia = IMDb('s3', 'mysql+mysqldb://may:venom123@localhost/imdb')
 else:
     ia = IMDb()
+
+def db_fav_exists(tconst, user_id):
+    """
+    checks if the tconst exists as a favorite for the user of user id `user_id`
+    """
+    fav_tconst = fav.query.filter_by(user_id=user_id).all()
+    if fav_tconst: # user already has favorites
+        for a in fav_tconst:
+            if a.tconst == int(tconst): # the same tconst already exists
+                return True
+
+    return False
+
+def db_get_userid(username):
+    """
+    get the user id of the username from the user_info table
+    """
+    user = user_info.query.filter_by(username=username).first()
+    if user:
+        return user.user_id
+    else:
+        return -1
+
 
 @main.route('/')
 def index():
@@ -124,27 +148,58 @@ def info():
                 'plot': plot if plot else '',
                 'cover': cover if cover else ''
         }
-        return render_template("info.html", movie=movie).replace(
+
+        isfavorite = db_fav_exists(tconst = movie['id'],
+                user_id = db_get_userid(session['user']))
+
+
+        return render_template("info.html",
+                movie=movie,
+                isfavorite=isfavorite).replace(
                 '<html lang="en"',
                 '<html lang="en" style="background-color:#efefef"',
                 1)
 
 @main.route('/fav', methods=['POST'])
 def favorite():
+    resp = {}
     if not session.get('user', None):
-        return Response("{'status':'error',\n"
-                "'message': 'not logged in'}",
+        resp['status'] = 'error'
+        resp['message'] = 'not logged in'
+        return Response(json.dumps(resp),
                 status=401,
                 mimetype='application/json')
 
+    remove = request.form.get('remove', None)
     tconst = request.form.get('tconst', None)
-    user = user_info.query.filter_by(username=session['user']).first()
 
-    user_id = user.user_id
+    user_id = db_get_userid(session['user'])
+    # user = user_info.query.filter_by(username=session['user']).first()
+    # user_id = user.user_id
+
+    if db_fav_exists(tconst=tconst, user_id=user_id):
+        if remove:
+            toremove = fav.query.filter_by(user_id=user_id,
+                    tconst=int(tconst)).first()
+
+            db.session.delete(toremove)
+            db.session.commit()
+            resp['status'] = 'success'
+            resp['actiontype'] = 'remove'
+            resp['message'] = 'removed the title from favorites'
+        else:
+            resp['status'] = 'warning'
+            resp['actiontype'] = 'none'
+            resp['message'] = 'title already in favorites'
+        return Response(json.dumps(resp),
+                status=200,
+                mimetype='application/json')
 
     db.session.add(fav(tconst=tconst, user_id=user_id))
     db.session.commit()
-    return Response("{'status': 'success',\n"
-                      "'message': added to fav}",
+    resp['status'] = 'success'
+    resp['actiontype'] = 'add'
+    resp['message'] = 'added to favorites'
+    return Response(json.dumps(resp),
             status=200,
             mimetype='application/json')
