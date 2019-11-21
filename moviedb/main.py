@@ -197,8 +197,10 @@ def info():
                 'cover': cover if cover else ''
         }
 
-        isfavorite = db_fav_exists(tconst = movie['id'],
-                user_id = db_get_userid(session['user']))
+        isfavorite = False
+        if session.get('user', None):
+            isfavorite = db_fav_exists(tconst = movie['id'],
+                    user_id = db_get_userid(session['user']))
 
 
         return render_template("info.html",
