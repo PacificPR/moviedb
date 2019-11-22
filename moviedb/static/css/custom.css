@@ -111,6 +111,7 @@ nav a:hover{
 
 .srch-input{
     height: 50px;
+    width: 90%;
     border-radius: 2.8rem; 
     border: none;
     box-sizing: border-box;
