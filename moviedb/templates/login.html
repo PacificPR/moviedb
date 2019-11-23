@@ -13,6 +13,11 @@
             </div>
         {% endif %}
         {% endwith %}
+        {% if newuser %}
+        <div class="notification is-info">
+            User Successfully Registered. You can now Log in
+        </div>
+        {% endif %}
         <form method="POST" action="/login">
             <div class="field">
                 <div class="control">

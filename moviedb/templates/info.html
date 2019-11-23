@@ -30,7 +30,7 @@
         <i class="material-icons md-fav">cancel</i>
         <p class="fav-text">remove from favorites</p>
       </button>
-      {% else %}
+      {% elif not isfavorite and session.get('user', None) %}
       <button id="favButton" type=submit class="fav" name="add" value="{{ movie['id'] }}">
         <i class="material-icons md-fav">favorite</i>
         <p class="fav-text">add to favorites</p>
