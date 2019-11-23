@@ -8,7 +8,9 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return render_template("login.html").replace('<html lang="en"',
+    newuser = request.args.get('nu', None)
+    return render_template("login.html", newuser=newuser).replace(
+            '<html lang="en"',
             '<html lang="en" style="background-image:url(../static/img/bg.jpg)"'
             ,1)
 
@@ -55,7 +57,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login', nu=1))
 
 @auth.route('/logout')
 def logout():

@@ -102,11 +102,13 @@ def profile():
     user_id = db_get_userid(session['user'])
     fav_query = fav.query.filter_by(user_id=user_id).all()
     fav_tconsts = [a.tconst for a in fav_query]
+    user = user_info.query.filter_by(user_id=user_id).first()
 
     user_data = {}
     user_data['movies'] = []
     user_data['favorite_count'] = len(fav_tconsts)
-    user_data['favorite_genre'] = 'TBD'
+    user_data['favorite_genre'] = user.fav_genre
+    user_data['recent_fav'] = user.recent_fav
     for a in fav_tconsts:
         movie = {}
         mov = ia.get_movie(a)
