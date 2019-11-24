@@ -45,6 +45,7 @@ body {
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
+  font-family: Roboto;
 }
 
 .button, .input {
@@ -436,7 +437,7 @@ nav a:hover{
 
 .profile-head h1{
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .profile-username {
