@@ -502,8 +502,7 @@ nav a:hover{
 }
 
 .profile-list-item:hover {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
 }
 
 .profile-list-item:focus {
