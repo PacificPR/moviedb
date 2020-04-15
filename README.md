@@ -1,5 +1,9 @@
 # moviedb
-A web app which can search for trending , top rated and the searched movies. Store your favourite in the database.
+
+A Flask web-app that uses imdbpy to browser movies. A user can also add movies
+to his favorites list.
+
+Try it out: https://project-moviedb.herokuapp.com/ 
 
 ![home](https://user-images.githubusercontent.com/28246690/69314049-2c1de200-0c59-11ea-8a2f-d65044786176.png)
 ![info](https://user-images.githubusercontent.com/28246690/69314086-3dff8500-0c59-11ea-8d08-64d1c70b0d1e.png)
