@@ -4,3 +4,4 @@ flask-sqlalchemy
 imdbpy
 tmdbsimple
 gunicorn
+psycopg2
