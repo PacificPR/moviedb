@@ -7,7 +7,13 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://may:venom123@localhost/imdb'
+    # Set the db_url variable or else it will read the env variable
+    # or else environment variable DATABASE_URL will be used
+    db_url=""
+    if os.environ['DATABASE_URL']:
+        db_url = os.environ['DATABASE_URL']
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     app.config['SECRET_KEY'] = 'thisisasecret'
 
     db.init_app(app)
