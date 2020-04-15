@@ -59,7 +59,8 @@
     function handleReq() {
         var action = favButton.getAttribute("name");
         httpReq.onreadystatechange = notify;
-        httpReq.open('POST', 'http://localhost:5000/fav');
+        // httpReq.open('POST', 'http://localhost:5000/fav');
+        httpReq.open('POST', 'https://project-moviedb.herokuapp.com/fav');
         formdata.append('tconst', tconst);
         if (action == "remove"){
             formdata.append('remove', 1);
