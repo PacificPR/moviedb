@@ -1,6 +1,7 @@
 from flask import Flask, session, g
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 db = SQLAlchemy()
 
