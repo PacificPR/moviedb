@@ -15,7 +15,7 @@ main = Blueprint('main', __name__)
 
 
 # local - use local mysql db
-local=True
+local=False
 
 # enable_extra - loads poster and plot overview from tmdb for movie info
 enable_extra=True
